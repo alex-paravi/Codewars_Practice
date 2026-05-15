@@ -2,12 +2,8 @@
 
 function solution($str, $ending)
 {
-    if ($ending === '') {
-        return true;
-    }
-    $endingLength = -strlen($ending);
-    $stringEnding = substr($str, $endingLength);
-    return $stringEnding === $ending;
+
+    return str_ends_with($str, $ending);
 }
 
 var_dump(solution("ai", "ai"));
