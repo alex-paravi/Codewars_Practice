@@ -1,19 +1,23 @@
 <?php
 
-class Player
+class User
 {
-    public $name;
-    public $hp = 100;
+    public string $email;
+    public string $password;
+    public string $name;
 
-    public function roar()
+    public function __construct(string $email, string $password, string $name)
     {
-        return $this->name . " кричит: ЗА ОРДУ!";
+        $this->email = $email;
+        $this->name = $name;
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
+    }
+    public function getInfo(): string
+    {
+        return "Имя: {$this->name}, Почта: {$this->email}, Пароль хэширован: {$this->password}";
     }
 }
 
+$user1 = new User("test@mail.ru", "1233456", "Test Name");
 
-$warior = new Player();
-$warior->name = "Громмаш";
-
-
-echo $warior->roar();
+echo $user1->getInfo();
