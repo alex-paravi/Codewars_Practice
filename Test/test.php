@@ -2,19 +2,16 @@
 
 class User
 {
-    public string $email;
-    public string $password;
-    public string $name;
-
-    public function __construct(string $email, string $password, string $name)
-    {
-        $this->email = $email;
-        $this->name = $name;
+    public function __construct(
+        public string $email,
+        public string $password,
+        public string $name
+    ) {
         $this->password = password_hash($password, PASSWORD_BCRYPT);
     }
-    public function getInfo(): string
+    public function getInfo()
     {
-        return "Имя: {$this->name}, Почта: {$this->email}, Пароль хэширован: {$this->password}";
+        return "Имя пользователя: {$this->name}, Почта: {$this->email}, Пароль хэширован :{$this->password}";
     }
 }
 
