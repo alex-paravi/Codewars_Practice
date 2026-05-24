@@ -17,6 +17,12 @@ class User
 
 class Admin extends User
 {
+
+    public function getInfo(): string
+    {
+        return "Уровень: Администратор | Имя: {$this->name}, Почта: {$this->email}";
+    }
+
     public function banUser(string $userName): string
     {
         return "Администратор {$this->name} забанил пользователя {$userName}";
@@ -25,6 +31,11 @@ class Admin extends User
 
 class Manager extends User
 {
+    public function getInfo(): string
+    {
+        return "Уровень: Менеджер | Имя: {$this->name}, Почта: {$this->email}";
+    }
+
     public function createOrder(string $product): string
     {
         return "Менеджер {$this->name} создал заказ на товар {$product}";
