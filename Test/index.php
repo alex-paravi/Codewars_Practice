@@ -1,23 +1,18 @@
 <?php
 
-class User
-{
-    public $id;
-    public $name;
-    public $email;
-    public $role;
+$db = new PDO('sqlite:' . __DIR__ . '/my_app.db');
 
-    public function getInfo()
-    {
-        return "Привет, меня зовут {$this->name}, моя роль: {$this->role}";
-    }
-}
-$db = new PDO('sqlite:my_app.db');
+$newName = 'Дмитрий';
+$newEmail = 'dima@mail.ru';
+$newRole = 'user';
 
-$query = $db->query("SELECT * FROM users WHERE id = 2");
+$sql = "INSERT INTO users (name, email, role) VALUES(:name, :email, :role)";
+$statement = $db->prepare($sql);
 
-$query->setFetchMode(PDO::FETCH_CLASS, 'User');
+$statement->execute([
+    'name' => $newName,
+    'email' => $newEmail,
+    'role' => $newRole
+]);
 
-$user = $query->fetch();
-
-echo $user->getInfo();
+echo "новый пользователь добавлен в базу!\n";
