@@ -2,32 +2,14 @@
 
 $db = new PDO('sqlite:' . __DIR__ . '/my_app.db');
 
-$newName = 'Дмитрий';
-$newEmail = 'dima@mail.ru';
-$newRole = 'user';
+$deletedId = 7;
 
-$sql = "INSERT INTO users (name, email, role) VALUES(:name, :email, :role)";
-$statement = $db->prepare($sql);
-
-$statement->execute([
-    'name' => $newName,
-    'email' => $newEmail,
-    'role' => $newRole
-]);
-
-echo "новый пользователь добавлен в базу!\n";
-
-
-$targetId = 3;
-$newRole = 'admin';
-
-$sql = "UPDATE users SET role = :role WHERE id = :id";
+$sql = "DELETE FROM users WHERE id = :id";
 
 $statement = $db->prepare($sql);
 
 $statement->execute([
-    'role' => $newRole,
-    'id' => $targetId
+    'id' => $deletedId
 ]);
 
-echo "Роль пользователя успешно обновлена на admin!\n";
+echo "Пользователь с ID {$deletedId} успешно удалён";
