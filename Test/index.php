@@ -16,3 +16,18 @@ $statement->execute([
 ]);
 
 echo "новый пользователь добавлен в базу!\n";
+
+
+$targetId = 3;
+$newRole = 'admin';
+
+$sql = "UPDATE users SET role = :role WHERE id = :id";
+
+$statement = $db->prepare($sql);
+
+$statement->execute([
+    'role' => $newRole,
+    'id' => $targetId
+]);
+
+echo "Роль пользователя успешно обновлена на admin!\n";
