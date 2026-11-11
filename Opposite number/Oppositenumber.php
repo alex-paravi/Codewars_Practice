@@ -10,3 +10,8 @@ function opposite(int $n): int
 $number = 1;
 
 var_dump(opposite($number));
+
+
+/*
+1) Можно было обойтись и без умножения, просто подставив - перед переменной.
+*/
